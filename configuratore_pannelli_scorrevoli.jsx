@@ -1,48 +1,5 @@
-<!DOCTYPE html>
-<html lang="it">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Configuratore Porte Scorrevoli — Albed</title>
-<style>
-  html, body { margin: 0; padding: 0; min-height: 100%; background: #F6F4EF; }
-  #root { min-height: 100vh; }
-  @media print {
-    body { background: #fff; }
-  }
-</style>
-</head>
-<body>
-<div id="root"></div>
-
-<script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react/18.3.1/umd/react.production.min.js"></script>
-<script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.3.1/umd/react-dom.production.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.25.6/babel.min.js"></script>
-
-<script type="text/babel" data-presets="react">
-const { useState, useMemo } = React;
-
-function Check({ size = 14 }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-      <polyline points="20 6 9 17 4 12" />
-    </svg>
-  );
-}
-function ChevronLeft({ size = 16 }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <polyline points="15 18 9 12 15 6" />
-    </svg>
-  );
-}
-function ChevronRight({ size = 16 }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <polyline points="9 18 15 12 9 6" />
-    </svg>
-  );
-}
+import React, { useMemo, useState } from "react";
+import { Check, ChevronRight, ChevronLeft, LayoutPanelLeft, Ruler, Palette, KeyRound, FileText, Settings2 } from "lucide-react";
 
 // ---------------------------------------------------------------------------
 // DATI DI PRODOTTO — Listino Albed V1.8 2025, categoria "Pannelli scorrevoli o
@@ -852,13 +809,13 @@ const COLLECTIONS = [
 ];
 
 const STEPS = [
-  { id: 0, label: "Collezione", icon: null },
-  { id: 1, label: "Dimensioni", icon: null },
-  { id: 2, label: "Binario", icon: null },
-  { id: 3, label: "Ante", icon: null },
-  { id: 4, label: "Pannello", icon: null },
-  { id: 5, label: "Maniglia", icon: null },
-  { id: 6, label: "Preventivo", icon: null },
+  { id: 0, label: "Collezione", icon: LayoutPanelLeft },
+  { id: 1, label: "Dimensioni", icon: Ruler },
+  { id: 2, label: "Binario", icon: Settings2 },
+  { id: 3, label: "Ante", icon: LayoutPanelLeft },
+  { id: 4, label: "Pannello", icon: Palette },
+  { id: 5, label: "Maniglia", icon: KeyRound },
+  { id: 6, label: "Preventivo", icon: FileText },
 ];
 
 function euro(n) {
@@ -873,7 +830,7 @@ function findBandIndex(bands, value) {
   return bands.length - 1;
 }
 
-function Configuratore() {
+export default function Configuratore() {
   const [step, setStep] = useState(0);
   const [sistema, setSistema] = useState("scorrevole");
   const [collectionId, setCollectionId] = useState("quadra");
@@ -2070,10 +2027,3 @@ function OptionRow({ selected, onClick, label, price }) {
     </button>
   );
 }
-
-
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<Configuratore />);
-</script>
-</body>
-</html>
